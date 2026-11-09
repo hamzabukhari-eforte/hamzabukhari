@@ -1,5 +1,14 @@
 document.documentElement.classList.add("js");
 document.querySelectorAll("a[data-u]").forEach(function(a){a.href="mailto:"+a.dataset.u+"@"+a.dataset.d});
+(function(){
+var nav=document.querySelector("nav"),btn=document.querySelector(".nav-toggle"),menu=document.getElementById("nav-menu");
+if(!nav||!btn||!menu)return;
+function setOpen(o){nav.classList.toggle("nav-open",o);btn.setAttribute("aria-expanded",o);btn.setAttribute("aria-label",o?"Close menu":"Open menu")}
+btn.addEventListener("click",function(){setOpen(!nav.classList.contains("nav-open"))});
+menu.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){setOpen(false)})});
+addEventListener("keydown",function(e){if(e.key==="Escape")setOpen(false)});
+addEventListener("resize",function(){if(innerWidth>720)setOpen(false)})
+})();
 document.querySelectorAll(".card").forEach(function(c){var b=c.querySelector(".tg");b.onclick=function(){var o=c.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Hide details":"Show what I built"};
 c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform="perspective(800px) rotateY("+x*6+"deg) rotateX("+-y*6+"deg)"});
 c.addEventListener("mouseleave",function(){c.style.transform=""})});

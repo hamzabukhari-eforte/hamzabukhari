@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: __SITE__/sitemap.xml
+Sitemap: https://smhamzabukhari.vercel.app/sitemap.xml
